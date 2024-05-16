@@ -6,7 +6,7 @@ function init() {
     const router = Router();
     router.post("/", async (req, res) => {
         res.send(
-            await chat(req.body.message)
+            await chat(req.body)
             .catch((err:any) => console.error(`Erreur: ${err}`))
         )
     });
