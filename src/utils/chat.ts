@@ -1,6 +1,8 @@
 async function query(data:{question:string}) {
     const response = await fetch(
-        "http://saphia.digitlab.info/api/v1/prediction/f72301d1-22d0-4ca9-806e-32186099c4ec",
+        // "http://saphia.digitlab.info/api/v1/prediction/f72301d1-22d0-4ca9-806e-32186099c4ec",
+        "http://localhost:3000/api/v1/prediction/f72301d1-22d0-4ca9-806e-32186099c4ec",
+
         {
             method: "POST",
             headers: {
