@@ -10,7 +10,7 @@ async function query(data:{question:string}) {
         }
     );
     const result = await response//.json().catch((err) => console.error(err));
-    console.log(result)
+    console.log("FUCK", result)
     return result;
 }
 
