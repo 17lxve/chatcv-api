@@ -1,7 +1,11 @@
 // Imports
 import getEndpoints from "express-list-endpoints";
+
 import testRoutes from "./test";
 import exampleRoutes from "./example";
+import candidateRoutes from "./candidate";
+import chatRoutes from "./chat";
+
 import server from "../app";
 import { Router } from "express";
 
@@ -23,6 +27,8 @@ function init() {
   // Grouped routes
   router.use("/test", testRoutes);
   router.use("/example", exampleRoutes);
+  router.use("/candidate", candidateRoutes);
+  router.use("/chat", chatRoutes)
   // Return the router
   return router;
 }

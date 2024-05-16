@@ -4,6 +4,7 @@ import cors from "cors";
 import helmet from "helmet";
 import router from "./router";
 import morgan from "morgan";
+import fileUpload from "express-fileupload"
 import { middlewareExample } from "./middleware";
 import { db } from "./db";
 
@@ -20,6 +21,11 @@ function init() {
     express.json(),
     express.text({ type: "text/html" }),
     middlewareExample,
+    fileUpload({
+      useTempFiles: true,
+      safeFileNames: true,
+      preserveExtension: true
+    }),
     router,
   ];
   for (const dependency of dependencies) app.use(dependency);

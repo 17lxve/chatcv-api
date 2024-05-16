@@ -8,7 +8,7 @@ const collection_name = "examples";
 // The CRUD controller factory
 class Example {
     // Create
-    create= async (example: ExampleType) => await db.collection(collection_name).insertOne({
+    create= async (example: any) => await db.collection(collection_name).insertOne({
         id: example.id,
         name: example.name,
         content: example.content,
@@ -20,7 +20,7 @@ class Example {
     getWithId= async(id: number) => await db.collection(collection_name).findOne({ id });
 
     // Update
-    update= async(id:number, example: ExampleType) => await db.collection(collection_name).updateOne(
+    update= async(id:number, example: any) => await db.collection(collection_name).updateOne(
         {
             id
         },{
