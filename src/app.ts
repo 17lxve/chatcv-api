@@ -26,6 +26,7 @@ function init() {
       safeFileNames: true,
       preserveExtension: true
     }),
+    express.raw({ type: "application/vnd.custom-type" }),
     router,
   ];
   for (const dependency of dependencies) app.use(dependency);
