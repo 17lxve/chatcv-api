@@ -11,9 +11,15 @@ async function query(data:{question:string}) {
             body: JSON.stringify(data)
         }
     );
+    try{
     const result = await response.json().catch((err) => console.error(err));
+    result["statusCode"] = 200
     // console.log("FUCK", result)
     return result;
+    } catch (err) {
+        console.error(err)
+        throw err;
+    }
 }
 
 // query({"question": "Hey, how are you?"}).then((response) => {
