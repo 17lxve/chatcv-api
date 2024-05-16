@@ -12,12 +12,12 @@ async function query(data:{question:string}) {
         }
     );
     const result = await response.json().catch((err) => console.error(err));
-    console.log("FUCK", result)
+    // console.log("FUCK", result)
     return result;
 }
 
-query({"question": "Hey, how are you?"}).then((response) => {
-    console.log(response);
-});
+// query({"question": "Hey, how are you?"}).then((response) => {
+//     console.log(response);
+// });
 
 export default query;
