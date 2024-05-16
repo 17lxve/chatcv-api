@@ -1,7 +1,7 @@
 {
-    "start": "Attempting connection to database",
-    "success": "Database connected successfully!",
-    "connection_error": "Could not connect to the database:\n\t",
-    "init_error": "Error before connection to database:\n\t",
-    "seed_done": "The seeding was completed"
+  "start": "Attempting connection to database",
+  "success": "Database connected successfully!",
+  "connection_error": "Could not connect to the database:\n\t",
+  "init_error": "Error before connection to database:\n\t",
+  "seed_done": "The seeding was completed"
 }

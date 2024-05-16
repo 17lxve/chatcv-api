@@ -1,1 +1,1 @@
-export { default as CandidateType } from './candidate';
+export { default as CandidateType } from "./candidate";

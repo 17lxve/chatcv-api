@@ -4,7 +4,7 @@ import cors from "cors";
 import helmet from "helmet";
 import router from "./router";
 import morgan from "morgan";
-import fileUpload from "express-fileupload"
+import fileUpload from "express-fileupload";
 import { middlewareExample } from "./middleware";
 import { db } from "./db";
 
@@ -24,7 +24,7 @@ function init() {
     fileUpload({
       useTempFiles: true,
       safeFileNames: true,
-      preserveExtension: true
+      preserveExtension: true,
     }),
     express.raw({ type: "application/vnd.custom-type" }),
     router,
@@ -32,7 +32,7 @@ function init() {
   for (const dependency of dependencies) app.use(dependency);
 
   // Return the server with all parameters defined
-  db.init()
+  db.init();
   return app;
 }
 

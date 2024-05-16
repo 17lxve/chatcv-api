@@ -26,7 +26,7 @@ function init() {
   // Grouped routes
   router.use("/test", testRoutes);
   router.use("/candidate", candidateRoutes);
-  router.use("/chat", chatRoutes)
+  router.use("/chat", chatRoutes);
   // Return the router
   return router;
 }
