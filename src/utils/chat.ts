@@ -9,7 +9,7 @@ async function query(data:{question:string}) {
             body: JSON.stringify(data)
         }
     );
-    const result = await response.json().catch((err) => console.error(err));
+    const result = await response//.json().catch((err) => console.error(err));
     return result;
 }
 
