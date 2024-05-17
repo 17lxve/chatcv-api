@@ -1,10 +1,12 @@
 // Imports
 import { serverMessages } from "./messages";
-import { env } from "./assets";
+import { credentials, env } from "./assets";
 import server from "./app";
+import https from "https";
 
 function main() {
   server.listen(env.port, () => serverMessages.start(env.port));
+  https.createServer(server).listen(credentials, env.sec_port as number, () => serverMessages.start(env.sec_port));
 }
 // Start!
 main();

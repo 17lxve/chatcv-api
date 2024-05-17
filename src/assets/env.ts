@@ -6,3 +6,4 @@ export const node_env = process.env.ENV || "development";
 export const mongo_uri =
   `${process.env.MONGO_URI}${process.env.APP_NAME}` ||
   "mongodb://localhost:27017/test";
+export const sec_port = process.env.SEC_PORT || 8081;
