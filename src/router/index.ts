@@ -1,7 +1,5 @@
 // Imports
 import getEndpoints from "express-list-endpoints";
-
-import testRoutes from "./test";
 import candidateRoutes from "./candidate";
 import chatRoutes from "./chat";
 
@@ -14,8 +12,7 @@ function init() {
 
   // Add the routes to the router
   // Simple routes
-  router.get("/", (req, res) => res.send({ msg: "Hello World from Timmy!" }));
-  router.get("/routes", (req, res) =>
+  router.get("/", (req, res) =>
     res.send(
       getEndpoints(server).map(
         (endpoint) => `${endpoint.methods} ${endpoint.path}`,
@@ -24,7 +21,6 @@ function init() {
   );
 
   // Grouped routes
-  router.use("/test", testRoutes);
   router.use("/candidate", candidateRoutes);
   router.use("/chat", chatRoutes);
   // Return the router
