@@ -9,7 +9,7 @@
     "serve": "node dist/index.js",
     "build": "tsc",
     "format": "prettier --write src/",
-    "deploy": "npm ci && npm run build && pm2 restart 5"
+    "deploy": "git pull && npm ci && npm run build && pm2 restart 5 && pm2 log 5"
   },
   "repository": {
     "type": "git",
