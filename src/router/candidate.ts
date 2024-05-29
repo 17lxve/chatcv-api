@@ -8,15 +8,18 @@ function init() {
   const router = Router();
   // router.post("/", async (req, res) => res.send(await candidateDB.create(req.body)));
   router.get("/", async (req, res) => res.send(await candidateDB.get()));
-  router.get("/:id", async (req, res) =>
-    res.send(await candidateDB.getWithId(req.params.id)),
+  router.get("/:mail", async (req, res) =>
+    res.send(await candidateDB.getWithMail(req.params.mail)),
   );
-  router.put("/:id", async (req, res) =>
-    res.send(await candidateDB.update(req.params.id, req.body)),
+  router.put("/:mail", async (req, res) =>
+    res.send(await candidateDB.update(req.params.mail, req.body)),
   );
-  router.delete("/:id", async (req, res) =>
-    res.send(await candidateDB.delete(req.params.id)),
+  router.delete("/:mail", async (req, res) =>
+    res.send(await candidateDB.delete(req.params.mail)),
   );
+  router.get("/letter/:filename", async (req, res) =>
+    res.download(process.env.OS === "Linux" ? `${process.env.USEER}/letters/${req.params.filename}`: `C:\\Users\\${process.env.USER}\\Downloads\\letters\\${req.params.filename}`)
+);
   router.get("/cv/:filename", async (req, res) => {
     const filename = req.params.filename;
     res.download(

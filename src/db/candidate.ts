@@ -1,5 +1,4 @@
 // Imports
-import { CandidateType } from "../models";
 import { db } from ".";
 
 // Define the name of the collection
@@ -20,32 +19,32 @@ class Candidate {
 
   // Read
   get = async () => await db.collection(collection_ln).find().toArray();
-  getWithId = async (id: string) => //@ts-ignore
-    await db.collection(collection_ln).findOne({ _id: id });
+  getWithMail = async (email: string) => //@ts-ignore
+    await db.collection(collection_ln).findOne({ email });
 
   // Update
-  update = async (id: string, candidate: any) =>
+  update = async (email: string, candidate: any) =>
     await db.collection(collection_ln).updateOne(
       { //@ts-ignore
-        _id:id,
+        email,
       },
       {
         $set: {
           ln:
-            candidate.ln ?? (await this.getWithId(id).then((data) => data!.ln)),
+            candidate.ln ?? (await this.getWithMail(email).then((data) => data!.ln)),
           phone:
             candidate.phone ??
-            (await this.getWithId(id).then((data) => data!.phone)),
+            (await this.getWithMail(email).then((data) => data!.phone)),
           email:
             candidate.email ??
-            (await this.getWithId(id).then((data) => data!.email)),
+            (await this.getWithMail(email).then((data) => data!.email)),
         },
       },
     );
 
   // Delete
-  delete = async (id: string) => //@ts-ignore
-    await db.collection(collection_ln).deleteOne({ _id:id });
+  delete = async (email: string) => //@ts-ignore
+    await db.collection(collection_ln).deleteOne({ email });
 }
 
 // Exports
