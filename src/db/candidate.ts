@@ -8,25 +8,26 @@ const collection_ln = "candidates";
 // The CRUD controller factory
 class Candidate {
   // Create
-  create = async (candidate: any, doc: string) =>
+  create = async (candidate: any, doc: string, motive: string) =>
     await db.collection(collection_ln).insertOne({
       prenom: candidate.fni,
       nom: candidate.lni,
       phone: candidate.phonei,
       email: candidate.maili,
       cv: doc,
+      mo: motive
     });
 
   // Read
   get = async () => await db.collection(collection_ln).find().toArray();
-  getWithId = async (id: number) =>
-    await db.collection(collection_ln).findOne({ id });
+  getWithId = async (id: string) => //@ts-ignore
+    await db.collection(collection_ln).findOne({ _id: id });
 
   // Update
-  update = async (id: number, candidate: any) =>
+  update = async (id: string, candidate: any) =>
     await db.collection(collection_ln).updateOne(
-      {
-        id,
+      { //@ts-ignore
+        _id:id,
       },
       {
         $set: {
@@ -43,8 +44,8 @@ class Candidate {
     );
 
   // Delete
-  delete = async (id: number) =>
-    await db.collection(collection_ln).deleteOne({ id });
+  delete = async (id: string) => //@ts-ignore
+    await db.collection(collection_ln).deleteOne({ _id:id });
 }
 
 // Exports

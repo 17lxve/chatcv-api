@@ -1,7 +1,7 @@
 // Imports
 import { Router } from "express";
 import { candidateDB } from "../db";
-import { save } from "../utils";
+import { save, motivate } from "../utils";
 import { UploadedFile } from "express-fileupload";
 
 function init() {
@@ -9,13 +9,13 @@ function init() {
   // router.post("/", async (req, res) => res.send(await candidateDB.create(req.body)));
   router.get("/", async (req, res) => res.send(await candidateDB.get()));
   router.get("/:id", async (req, res) =>
-    res.send(await candidateDB.getWithId(parseInt(req.params.id))),
+    res.send(await candidateDB.getWithId(req.params.id)),
   );
   router.put("/:id", async (req, res) =>
-    res.send(await candidateDB.update(parseInt(req.params.id), req.body)),
+    res.send(await candidateDB.update(req.params.id, req.body)),
   );
   router.delete("/:id", async (req, res) =>
-    res.send(await candidateDB.delete(parseInt(req.params.id))),
+    res.send(await candidateDB.delete(req.params.id)),
   );
   router.get("/cv/:filename", async (req, res) => {
     const filename = req.params.filename;
@@ -34,20 +34,17 @@ function init() {
         .json(req.files === null ? "Null Stuff" : "Undefined stuff");
     } else {
       const doc = req.files.doci;
+      const motive = req.files.motivation;
       try {
-        const name = save(doc as UploadedFile);
-        candidateDB.create(req.body, name);
+        const cv = save(doc as UploadedFile);
+        const mo = motivate(motive as UploadedFile);
+        candidateDB.create(req.body, cv, mo);
         res.status(201).json({ status: "uploaded" });
       } catch (error) {
         res.status(500).json({ error });
       }
     }
   });
-
-  // router.get("/ss", async (req, res) => upload(req.files!.doc as UploadedFile) )
-  router.post("/dad", async (req, res) =>
-    res.status(201).json({ data: "bot" }),
-  );
 
   return router;
 }
